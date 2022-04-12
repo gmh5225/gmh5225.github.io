@@ -1,66 +1,43 @@
 ---
-layout: default
+layout: compress
 ---
 
-{% include lang.html %}
+<!DOCTYPE html>
+<html lang="{{ page.lang | default: site.lang | default: " en " }}">
 
-{% include assets-origin.html %}
+{% include header.html %}
 
-<div class="row">
+<body data-theme="{{ site.mode }}" class="notransition">
 
-  <!-- core -->
-  <div id="core-wrapper" class="col-12 col-lg-11 col-xl-8">
-    <div class="post pl-1 pr-1 pl-sm-2 pr-sm-2 pl-md-4 pr-md-4">
+  <script>
+    const body = document.body;
+    const data = body.getAttribute("data-theme");
 
-    {% capture _content %}
-      {% if layout.refactor or page.layout == 'page' %}
-        {% include refactor-content.html content=content %}
-      {% else %}
-        {{ content }}
-      {% endif %}
-    {% endcapture %}
+    const initTheme = (state) => {
+      if (state === "dark") {
+        body.setAttribute("data-theme", "dark");
+      } else if (state === "light") {
+        body.removeAttribute("data-theme");
+      } else {
+        localStorage.setItem("theme", data);
+      }
+    };
+ 
+    initTheme(localStorage.getItem("theme"));
+    
+    setTimeout(() => body.classList.remove("notransition"), 75);
+  </script>
 
-    {% if page.layout == 'page' or page.collection == 'tabs'%}
-      {% assign title = site.data.locales[lang].tabs[tab_key] | default: page.title %}
-      <h1 class="dynamic-title">
-        {{ title }}
-      </h1>
-      <div class="post-content">
-        {{ _content }}
-      </div>
-    {% else %}
-      {{ _content }}
-    {% endif %}
-
-    </div>
-  </div> <!-- #core-wrapper -->
-
-  <!-- pannel -->
-  <div id="panel-wrapper" class="col-xl-3 pl-2 text-muted">
-
-    <div class="access">
-      {% include update-list.html %}
-      {% include trending-tags.html %}
-    </div>
-
-    {% for _include in layout.pannel_includes %}
-      {% assign _include_path = _include | append: '.html' %}
-      {% include {{ _include_path }} %}
-    {% endfor %}
+  {% include navbar.html %}
+  <div class="wrapper">
+    <header class="header">
+      <h1 class="header-title center" itemprop="headline">{{ page.title | escape }}.</h1>
+    </header>
+    <main class="page-content" aria-label="Content">
+      {% include anchor_headings.html html=content anchorClass="anchor-head" beforeHeading=true h_min=4 h_max=4 %}
+    </main>
+    {% include footer.html %}
   </div>
+</body>
 
-</div>
-
-<!-- tail -->
-{% if layout.tail_includes %}
-<div class="row">
-  <div class="col-12 col-lg-11 col-xl-8">
-    <div id="tail-wrapper" class="pl-1 pr-1 pl-sm-2 pr-sm-2 pl-md-4 pr-md-4">
-      {% for _include in layout.tail_includes %}
-        {% assign _include_path = _include | append: '.html' %}
-        {% include {{ _include_path }} %}
-      {% endfor %}
-    </div>
-  </div>
-</div> <!-- .row -->
-{% endif %}
+</html>
