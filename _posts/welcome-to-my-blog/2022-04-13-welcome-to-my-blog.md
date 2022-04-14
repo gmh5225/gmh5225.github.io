@@ -6,4 +6,4 @@ categories: jekyll update
 
 ---
 
-Welcome to my blog!
+Welcome to my blog! Now it's nothing.
