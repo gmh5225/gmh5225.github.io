@@ -11,10 +11,12 @@ tags: [git, tor]
 - proxychains_win32_x64.exe git clone http://rexw3wrz5pldtadf3hy4vqnuzokhco4l32kyntj36fcgpjuy3nvxidid.onion/gmh5225/Theodosius.git
 
 # Easy Way
-```bash
 Enable:
+```bash
 git config --global http.proxy "socks5h://127.0.0.1:9150"
+```
 Disable:
+```bash
 git config --global --unset http.proxy
 ```
 
