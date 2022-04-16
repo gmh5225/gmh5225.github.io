@@ -1,7 +1,7 @@
 
 ---
 title: How to use git on tor?
-date: 2022-04-16 20:18:47 +07:00
+date: 2022-04-16 20:18:00 +07:00
 tags: [git, tor]
 ---
 
