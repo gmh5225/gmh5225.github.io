@@ -4,4 +4,5 @@
 - 🌱 I’m currently learning llvm and coding llvm-msvc [[link]](https://github.com/NewWorldComingSoon/llvm-msvc-build)
 - 💞️ I’m looking to collaborate on freedom
 - 📫 How to reach me twitter:[@gmhzxy](https://twitter.com/gmhzxy)
+- 📫 How to reach me Mastodon:[@gmh5225](https://infosec.exchange/@gmh5225)
 
